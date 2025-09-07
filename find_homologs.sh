@@ -8,4 +8,4 @@ tblastn -query "$queryFile" -subject "$subjectFile" -outfmt '6 qseqid sseqid pid
 
 numMatches=$(wc -l < "$output")
 
-echo "$numMatches"test
+echo "$numMatches"
