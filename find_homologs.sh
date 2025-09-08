@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/bin/bash 
 
-queryFile=$1
-subjectFile=$2
-output=$3
+queryFile=$1 
+subjectFile=$2 
+output=$3 
 
-tblastn -query "$queryFile" -subject "$subjectFile" -outfmt '6 qseqid sseqid pident length qlen' \ | awk '$3 > 30 && $4 > 0.9 * $5' > "$output"
+tblastn -query $queryFile -subject $subjectFile -task tblastn -outfmt "6 qseqid sseqid pident length qlen" -out allMatches.txt
 
-numMatches=$(wc -l < "$output")
+awk '$3 > 30 && $4 > 0.9 * $5' allMatches.txt > "$output" 
 
-echo "$numMatches"
+filterMatches=$(wc -l < "$output") 
+echo "$filterMatches"
