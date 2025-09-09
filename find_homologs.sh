@@ -8,5 +8,4 @@ tblastn -query $queryFile -subject $subjectFile -task tblastn -outfmt "6 qseqid 
 
 awk '$3 > 30 && $4 > 0.9 * $5' allMatches.txt > "$output" 
 
-filterMatches=$(wc -l < "$output") 
-echo "$filterMatches"
+wc -l < "$output"
